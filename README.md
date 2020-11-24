@@ -17,11 +17,11 @@
 
 ## What is Logs Manager?
 
-**Logs Manager** is an application developed for a Network and distributed System Security exam 
+**Logs Manager** is an application developed for a "Networks and distributed systems security" exam 
 at **Univeristy Aldo Moro** of Taranto Italy. <br>
-its goal is to manage log files released from different appas. 
+its goal is to manage log files released from different apps. 
 It can be used to concatenete a large ammount of data logs spreads in different CSV/XLS/XLSX files, 
-merge two log files using a key (column name) like struttured data in database does.
+in addiction, it can allow merge two log files using a key (column name) at the same way a databases would do.
 
 ### Functionalities
 <ul>

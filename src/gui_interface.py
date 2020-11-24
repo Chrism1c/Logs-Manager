@@ -4,7 +4,14 @@ from src.code import concateneteLogs, mergeLogs, getHeaders, loadLogs, findExten
 
 
 class Ui(QtWidgets.QDialog):
+    """
+    Main gui-Window class
+    """
+
     def __init__(self):
+        """
+        init function for the gui window
+        """
         super(Ui, self).__init__()
         uic.loadUi('src/gui_design.ui', self)
 
@@ -12,34 +19,40 @@ class Ui(QtWidgets.QDialog):
         self.listof_concatFiles = list()
         self.listof_mergeFiles = list()
 
-        self.Search_1_button = self.findChild(QtWidgets.QPushButton, 'Search_1')  # Find the button
+        self.Search_1_button = self.findChild(QtWidgets.QPushButton, 'Search_1')
         self.Search_1_button.clicked.connect(
             lambda: self.fileDialog(True))
         self.concat_input_text = self.findChild(QtWidgets.QTextEdit, 'text_concat')
-        self.Save_1_button = self.findChild(QtWidgets.QPushButton, 'Save_1')  # Find the button
+        self.Save_1_button = self.findChild(QtWidgets.QPushButton, 'Save_1')
         self.Save_1_button.clicked.connect(
             lambda: self.fileDialogSave(True))
         self.concat_output_text = self.findChild(QtWidgets.QTextEdit, 'text_concat_2')
-        self.ConcatNow_button = self.findChild(QtWidgets.QPushButton, 'Concat_Now')  # Find the button
+        self.ConcatNow_button = self.findChild(QtWidgets.QPushButton, 'Concat_Now')
         self.ConcatNow_button.clicked.connect(
             lambda: self.concatNow())
 
-        self.Search_2_button = self.findChild(QtWidgets.QPushButton, 'Search_2')  # Find the button
+        self.Search_2_button = self.findChild(QtWidgets.QPushButton, 'Search_2')
         self.Search_2_button.clicked.connect(
             lambda: self.fileDialog(False))
         self.merge_input_text = self.findChild(QtWidgets.QTextEdit, 'text_merge')
-        self.Save_2_button = self.findChild(QtWidgets.QPushButton, 'Save_2')  # Find the button
+        self.Save_2_button = self.findChild(QtWidgets.QPushButton, 'Save_2')
         self.Save_2_button.clicked.connect(
             lambda: self.fileDialogSave(False))
         self.merge_output_text = self.findChild(QtWidgets.QTextEdit, 'text_merge_2')
-        self.MergeNow_button = self.findChild(QtWidgets.QPushButton, 'Merge_Now')  # Find the button
+        self.MergeNow_button = self.findChild(QtWidgets.QPushButton, 'Merge_Now')
         self.MergeNow_button.clicked.connect(
             lambda: self.mergeNow())
 
         self.show()
 
     def fileDialog(self, value):
+        """
+        Procedure useful to select input files
+        :param value: boolean value to choose merge/concat operation
+        :return:  none
+        """
 
+        # Clear console labels
         self.Console_merge.setText("")
         self.Console_merge.setStyleSheet("background-color: none;")
         self.Console_concat.setText("")
@@ -68,14 +81,21 @@ class Ui(QtWidgets.QDialog):
                     self.comboBox_rightKey.addItem(elem)
             print(filenames)
         except:
-            print("***** Errore in fileDialog")
+            print("***** Error in fileDialog")
+            # Clear all data
             self.merge_input_text.setPlainText("")
             self.concat_input_text.setPlainText("")
             self.listof_concatFiles.clear
             self.listof_mergeFiles.clear
 
     def fileDialogSave(self, value):
+        """
+        Procedure useful to select name and directory of the output file
+        :param value: boolean value to choose merge/concat operation
+        :return: none
+        """
 
+        # Clear console labels
         self.Console_merge.setText("")
         self.Console_merge.setStyleSheet("background-color: none;")
         self.Console_concat.setText("")
@@ -94,11 +114,16 @@ class Ui(QtWidgets.QDialog):
             self.output_path = filename
             print(filename)
         except:
-            print("***** Errore in fileDialogSave")
+            print("***** Error in fileDialogSave")
+            # Clear all data
             self.concat_output_text.setPlainText("")
             self.output_path = ""
 
     def concatNow(self):
+        """
+        Procedure useful to control inputs value before concat operation
+        :return:
+        """
         try:
             if len(self.listof_concatFiles) > 1 and len(self.output_path) > 1:
 
@@ -116,20 +141,25 @@ class Ui(QtWidgets.QDialog):
                 self.Console_concat.setText("Concat failed !")
                 self.Console_concat.setStyleSheet("background-color: red;")
         except:
-            print("***** Errore in concatNow")
+            print("***** Error in concatNow")
 
+        # Clear all data
         self.listof_concatFiles.clear()
         self.output_path = ""
         self.concat_input_text.setPlainText("")
         self.concat_output_text.setPlainText("")
 
     def mergeNow(self):
+        """
+        Procedure useful to control inputs value before merge operation
+        :return: none
+        """
         try:
-            # Controllo chiavi
+            # Keys control
             lkey = self.comboBox_leftKey.currentText()
             rkey = self.comboBox_rightKey.currentText()
-            print("Chiave left corrente = ", self.comboBox_leftKey.currentText())
-            print("Chiave right corrente = ", self.comboBox_rightKey.currentText())
+            # print("Chiave left corrente = ", self.comboBox_leftKey.currentText())
+            # print("Chiave right corrente = ", self.comboBox_rightKey.currentText())
 
             if len(self.listof_mergeFiles) == 2 and len(self.output_path) > 0:
 
@@ -146,8 +176,9 @@ class Ui(QtWidgets.QDialog):
                 self.Console_merge.setText("Merge failed !")
                 self.Console_merge.setStyleSheet("background-color: red;")
         except:
-            print("***** Errore in mergeNow")
+            print("***** Error in mergeNow")
 
+        # Clear all data
         self.listof_mergeFiles.clear()
         self.output_path = ""
         self.merge_input_text.setPlainText("")
