@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>500</height>
+    <height>530</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -22,13 +22,13 @@
   <property name="minimumSize">
    <size>
     <width>550</width>
-    <height>500</height>
+    <height>530</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>550</width>
-    <height>500</height>
+    <height>530</height>
    </size>
   </property>
   <property name="palette">
@@ -774,7 +774,7 @@
     </font>
    </property>
    <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
+    <enum>QFrame::Box</enum>
    </property>
    <property name="text">
     <string>Logs Manager</string>
@@ -812,6 +812,63 @@
     <number>-1</number>
    </property>
   </widget>
+  <widget class="QLabel" name="Console_merge">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>470</y>
+     <width>155</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="buddy">
+    <cstring>text_merge</cstring>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Console_concat">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>240</y>
+     <width>155</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="buddy">
+    <cstring>text_merge</cstring>
+   </property>
+  </widget>
   <zorder>Logo</zorder>
   <zorder>text_merge</zorder>
   <zorder>Merge</zorder>
@@ -832,6 +889,8 @@
   <zorder>Save_1</zorder>
   <zorder>comboBox_rightKey</zorder>
   <zorder>comboBox_leftKey</zorder>
+  <zorder>Console_merge</zorder>
+  <zorder>Console_concat</zorder>
  </widget>
  <tabstops>
   <tabstop>text_concat</tabstop>
