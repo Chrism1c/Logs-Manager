@@ -1,5 +1,9 @@
 from src.gui_interface import *
 import sys
+import ctypes
+
+myappid = 'Uniba.Logs-Manager'  # arbitrary string
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
 if __name__ == "__main__":
     """

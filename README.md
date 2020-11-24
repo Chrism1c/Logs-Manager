@@ -1,5 +1,5 @@
 # Logs Manager
-### Simple gui app to concatenete or merge (by key) your csv/xlsx/xls files<br>
+### Gui app useful to concatenete or execute a key based merge (database like) on your csv/xlsx/xls files<br>
 <p align="center">
   <img src="images/logsmanager_image.png">
 </p>

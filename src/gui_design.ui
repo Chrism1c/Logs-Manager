@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>Main</class>
  <widget class="QDialog" name="Main">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -453,12 +456,15 @@
    <double>1.000000000000000</double>
   </property>
   <property name="whatsThis">
-   <string/>
+   <string notr="true"/>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
    <bool>false</bool>
   </property>
   <widget class="QTextEdit" name="text_merge">
@@ -787,6 +793,9 @@
    </property>
    <property name="openExternalLinks">
     <bool>false</bool>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::NoTextInteraction</set>
    </property>
   </widget>
   <widget class="QComboBox" name="comboBox_rightKey">
