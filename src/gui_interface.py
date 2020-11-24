@@ -22,29 +22,41 @@ class Ui(QtWidgets.QDialog):
         self.listof_mergeFiles = list()
 
         self.Search_1_button = self.findChild(QtWidgets.QPushButton, 'Search_1')
+        self.Search_1_button.setToolTip('Select input files names')
         self.Search_1_button.clicked.connect(
             lambda: self.fileDialog(True))
-        self.concat_input_text = self.findChild(QtWidgets.QTextEdit, 'text_concat')
+        self.concat_input_text = self.findChild(QtWidgets.QTextEdit, 'text_concat').setToolTip(
+            'Selected input files path')
         self.Save_1_button = self.findChild(QtWidgets.QPushButton, 'Save_1')
+        self.Save_1_button.setToolTip('Select output file name')
         self.Save_1_button.clicked.connect(
             lambda: self.fileDialogSave(True))
-        self.concat_output_text = self.findChild(QtWidgets.QTextEdit, 'text_concat_2')
+        self.concat_output_text = self.findChild(QtWidgets.QTextEdit, 'text_concat_2').setToolTip(
+            'Selected output file path')
         self.ConcatNow_button = self.findChild(QtWidgets.QPushButton, 'Concat_Now')
+        self.ConcatNow_button.setToolTip('Execute concatenation on selected files')
         self.ConcatNow_button.clicked.connect(
             lambda: self.concatNow())
 
         self.Search_2_button = self.findChild(QtWidgets.QPushButton, 'Search_2')
+        self.Search_2_button.setToolTip('Select input files names')
         self.Search_2_button.clicked.connect(
             lambda: self.fileDialog(False))
-        self.merge_input_text = self.findChild(QtWidgets.QTextEdit, 'text_merge')
+        self.merge_input_text = self.findChild(QtWidgets.QTextEdit, 'text_merge').setToolTip(
+            'Selected input files path')
         self.Save_2_button = self.findChild(QtWidgets.QPushButton, 'Save_2')
+        self.Save_2_button.setToolTip('Select output file name')
         self.Save_2_button.clicked.connect(
             lambda: self.fileDialogSave(False))
-        self.merge_output_text = self.findChild(QtWidgets.QTextEdit, 'text_merge_2')
+        self.merge_output_text = self.findChild(QtWidgets.QTextEdit, 'text_merge_2').setToolTip(
+            'Selected output file path')
         self.MergeNow_button = self.findChild(QtWidgets.QPushButton, 'Merge_Now')
+        self.MergeNow_button.setToolTip('Execute merge on selected files')
         self.MergeNow_button.clicked.connect(
             lambda: self.mergeNow())
 
+        self.comboBox_leftKey.setToolTip('Key header from file 1')
+        self.comboBox_rightKey.setToolTip('Key header from file 2')
         self.show()
 
     def fileDialog(self, value):
