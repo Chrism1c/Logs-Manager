@@ -67,12 +67,25 @@ ___
 
 ## Instructions
 
-1 - XXX <br> 
+### 0 - Prerequisites and notes
+- For CSV files, they must have first row with headers separeted by "," and all record attributes must be separeted by ","
+- For XLS/XLSX files, they must have first row with headers
+- All input files must have the same extension but the output file could be choose as differet one : (CSV->XLSX | XLSX->CSV)
+
+### 1 - Concatenete Function <br> 
+1.1 - Click on "Open" button and select 2 or more log files (CSV/XLS/XLSX)<br>
+1.2 - Click on "Save" button and select name and directory of the output file (CSV/XLS/XLSX)<br>
+1.3 - Click on "CONCAT NOW" to execute concatenation of log files<br> 
+
+### 2 - Merge Function <br>
+2.1 - Click on "Open" button and select 2 log files (CSV/XLS/XLSX)<br>
+2.2 - Click on "Save" button and select name and directory of the output file (CSV/XLS/XLSX)<br>
+2.3 - Click on "MERGE NOW" to execute concatenation of log files<br>
+
 ![](images/XXXX.png)
 <p align="center">
   <img src="images/XXXX.png">
 </p>
-2 - XXXX <br> 
 
 </li>
 <li>
