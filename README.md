@@ -6,11 +6,11 @@
 
 ### Index
 
-1. [**What is Logs Manager?**](#what-is-logs-manager)
-2. [**System Dependencies**](#requirements-and-dependencies)
-3. [**Quick Start**](#quick-start)
-6. [**Instructions**](#instructions)
-7. [**Credits**](#credits)
+- [**What is Logs Manager?**](#what-is-logs-manager)
+- [**System Dependencies**](#requirements-and-dependencies)
+- [**Quick Start**](#quick-start)
+- [**Instructions**](#instructions)
+- [**Credits**](#credits)
 
 <ul>
 
@@ -68,7 +68,7 @@ PyQt5: [**pypi.org/project/PyQt5**](https://pypi.org/project/PyQt5/) <br>
 ### Prerequisites and notes
 - For CSV files, they must have first row with headers separeted by "," and all record attributes must be separeted by ","
 - For XLS/XLSX files, they must have first row with headers
-- All input files must have the same extension but the output file could be choose as differet one : (CSV->XLSX | XLSX->CSV)
+- All input files must have the same extension but the output file could be chosen as different one: (CSV->XLSX | XLSX->CSV)
 
 ### Concatenete Function <br> 
 1 - Click on "Open" button and select 2 or more log files (CSV/XLS/XLSX)<br>
