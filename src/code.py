@@ -13,7 +13,7 @@ def loadLogs(file_names, ext_in):
     :return: a list of dataframes
     """
     if ext_in == 'csv':
-        frames = [pd.read_csv(f, delimiter=';', index_col=False) for f in file_names]
+        frames = [pd.read_csv(f, delimiter=',', index_col=False) for f in file_names]
     else:
         excels = [pd.ExcelFile(name) for name in file_names]
         frames = [x.parse(x.sheet_names[0], header=0, index_col=None) for x in excels]
@@ -72,7 +72,7 @@ def concateneteLogs(file_names, output_path, ext_in, ext_out):
     :return: none
     """
     if ext_in == 'csv':
-        combined = pd.concat([pd.read_csv(f, delimiter=';', names=None, index_col=False) for f in file_names])
+        combined = pd.concat([pd.read_csv(f, delimiter=',', names=None, index_col=False) for f in file_names])
     else:
         excels = [pd.ExcelFile(name) for name in file_names]
         # turn them into dataframes

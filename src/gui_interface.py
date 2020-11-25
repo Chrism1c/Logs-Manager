@@ -65,40 +65,36 @@ class Ui(QtWidgets.QDialog):
         :param value: boolean value to choose merge/concat operation
         :return:  none
         """
-
-        # Clear console labels
-        self.Console_merge.setText("")
-        self.Console_merge.setStyleSheet("background-color: none;")
-        self.Console_concat.setText("")
-        self.Console_concat.setStyleSheet("background-color: none;")
-
         try:
+            # Clear console labels
+            self.Console_merge.setText("")
+            self.Console_merge.setStyleSheet("background-color: none;")
+            self.Console_concat.setText("")
+            self.Console_concat.setStyleSheet("background-color: none;")
+
             filenames, x = QFileDialog.getOpenFileNames(self, "Select input files (2+ Concat | Only 2 Merge)", "",
                                                         "Cartella di lavoro Excel (*.xlsx);;Cartella di lavoro Excel "
                                                         "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
                                                         "*.csv)")
             if value:
-                self.concat_input_text.setPlainText("\n".join(filenames))
+                self.concat_text.setPlainText("\n".join(filenames))
                 self.listof_concatFiles = filenames
             else:
-                self.merge_input_text.setPlainText("\n".join(filenames))
+                self.text_merge.setPlainText("\n".join(filenames))
                 self.listof_mergeFiles = filenames
-
                 ext_in = findExtension(x)
                 frames = loadLogs(filenames, ext_in)
-
                 leftColumns, rightColumns = getHeaders(frames)
                 for elem in leftColumns:
                     self.comboBox_leftKey.addItem(elem)
-
                 for elem in rightColumns:
                     self.comboBox_rightKey.addItem(elem)
             print(filenames)
         except:
             print("***** Error in fileDialog")
             # Clear all data
-            self.merge_input_text.setPlainText("")
-            self.concat_input_text.setPlainText("")
+            self.text_merge.setPlainText("")
+            self.text_concat.setPlainText("")
             self.listof_concatFiles.clear
             self.listof_mergeFiles.clear
 
@@ -121,16 +117,17 @@ class Ui(QtWidgets.QDialog):
                                                       "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
                                                       "*.csv)")
             if value:
-                self.concat_output_text.setPlainText(filename)
+                self.text_concat_2.setPlainText(filename)
             else:
-                self.merge_output_text.setPlainText(filename)
+                self.text_merge_2.setPlainText(filename)
 
             self.output_path = filename
             print(filename)
         except:
             print("***** Error in fileDialogSave")
             # Clear all data
-            self.concat_output_text.setPlainText("")
+            self.text_merge_2.setPlainText("")
+            self.text_concat_2.setPlainText("")
             self.output_path = ""
 
     def concatNow(self):
@@ -160,8 +157,8 @@ class Ui(QtWidgets.QDialog):
         # Clear all data
         self.listof_concatFiles.clear()
         self.output_path = ""
-        self.concat_input_text.setPlainText("")
-        self.concat_output_text.setPlainText("")
+        self.text_concat.setPlainText("")
+        self.text_concat_2.setPlainText("")
 
     def mergeNow(self):
         """
@@ -195,7 +192,7 @@ class Ui(QtWidgets.QDialog):
         # Clear all data
         self.listof_mergeFiles.clear()
         self.output_path = ""
-        self.merge_input_text.setPlainText("")
-        self.merge_output_text.setPlainText("")
+        self.text_merge.setPlainText("")
+        self.text_merge_2.setPlainText("")
         self.comboBox_leftKey.clear()
         self.comboBox_rightKey.clear()
