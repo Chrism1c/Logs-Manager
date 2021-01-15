@@ -1,2 +1,4 @@
 pandas~=1.0.3
 PyQt5~=5.15.1
+xlrd
+openpyxl

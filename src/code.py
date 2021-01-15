@@ -1,5 +1,5 @@
 import pandas as pd
-
+import openpyxl
 
 # import socket
 # hostname = socket.gethostname()
@@ -15,8 +15,8 @@ def loadLogs(file_names, ext_in):
     if ext_in == 'csv':
         frames = [pd.read_csv(f, delimiter=',', index_col=False) for f in file_names]
     else:
-        excels = [pd.ExcelFile(name) for name in file_names]
-        frames = [x.parse(x.sheet_names[0], header=0, index_col=None) for x in excels]
+        frames = [pd.read_excel(name, engine='openpyxl') for name in file_names]
+        # frames = [x.parse(x.sheet_names[0], header=0, index_col=None) for x in excels]
     return frames
 
 
@@ -40,6 +40,8 @@ def saveLogs(result, output_path, ext_out):
     if ext_out == 'csv':
         result.to_csv(output_path, index=False)
     else:
+        result = result.dropna(how='all')
+        print(result.dropna(how='all'))
         result.to_excel(output_path, header=True, index=False)
 
 
@@ -74,16 +76,19 @@ def concateneteLogs(file_names, output_path, ext_in, ext_out):
     if ext_in == 'csv':
         combined = pd.concat([pd.read_csv(f, delimiter=',', names=None, index_col=False) for f in file_names])
     else:
-        excels = [pd.ExcelFile(name) for name in file_names]
+        frames = [pd.read_excel(name, engine='openpyxl') for name in file_names]
         # turn them into dataframes
-        frames = [x.parse(x.sheet_names[0], header=None, index_col=None) for x in excels]
+        # frames = [x.parse(x.sheet_names[0], header=None, index_col=None) for x in excels]
         # delete the first row for all frames except the first
-        frames[1:] = [df[1:] for df in frames[1:]]
-        combined = pd.concat(frames)
+
+        # frames[1:] = [df[1:] for df in frames[1:]]
+
+        combined = pd.concat(frames).dropna()
+
     if ext_out == 'csv':
         combined.to_csv(output_path, index=False)
     else:
-        combined.to_excel(output_path, header=False, index=False)
+        combined.to_excel(output_path, index=False)
 
 
 def findExtension(fileName):

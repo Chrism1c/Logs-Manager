@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
 from PyQt5.QtWidgets import QFileDialog
 from src.code import concateneteLogs, mergeLogs, getHeaders, loadLogs, findExtension
+import xlrd
 
 
 class Ui(QtWidgets.QDialog):
@@ -71,13 +72,12 @@ class Ui(QtWidgets.QDialog):
             self.Console_merge.setStyleSheet("background-color: none;")
             self.Console_concat.setText("")
             self.Console_concat.setStyleSheet("background-color: none;")
-
             filenames, x = QFileDialog.getOpenFileNames(self, "Select input files (2+ Concat | Only 2 Merge)", "",
                                                         "Cartella di lavoro Excel (*.xlsx);;Cartella di lavoro Excel "
                                                         "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
                                                         "*.csv)")
             if value:
-                self.concat_text.setPlainText("\n".join(filenames))
+                self.text_concat.setPlainText("\n".join(filenames))
                 self.listof_concatFiles = filenames
             else:
                 self.text_merge.setPlainText("\n".join(filenames))
@@ -135,24 +135,24 @@ class Ui(QtWidgets.QDialog):
         Procedure useful to control inputs value before concat operation
         :return:
         """
-        try:
-            if len(self.listof_concatFiles) > 1 and len(self.output_path) > 1:
+        # try:
+        if len(self.listof_concatFiles) > 1 and len(self.output_path) > 1:
 
-                ext_in = findExtension(self.listof_concatFiles[0])
-                ext_out = findExtension(self.output_path)
+            ext_in = findExtension(self.listof_concatFiles[0])
+            ext_out = findExtension(self.output_path)
 
-                concateneteLogs(self.listof_concatFiles, self.output_path, ext_in, ext_out)
+            concateneteLogs(self.listof_concatFiles, self.output_path, ext_in, ext_out)
 
-                print('Concat succesful !')
-                self.Console_concat.setText("Concat succesful !")
-                self.Console_concat.setStyleSheet("background-color: lightgreen;")
-            else:
-                print('Concat failed !\n NB:\n- Select two ore more input files [OPEN] \n- Define one output file ['
-                      'SAVE]')
-                self.Console_concat.setText("Concat failed !")
-                self.Console_concat.setStyleSheet("background-color: red;")
-        except:
-            print("***** Error in concatNow")
+            print('Concat succesful !')
+            self.Console_concat.setText("Concat succesful !")
+            self.Console_concat.setStyleSheet("background-color: lightgreen;")
+        else:
+            print('Concat failed !\n NB:\n- Select two ore more input files [OPEN] \n- Define one output file ['
+                  'SAVE]')
+            self.Console_concat.setText("Concat failed !")
+            self.Console_concat.setStyleSheet("background-color: red;")
+        # except:
+        #     print("***** Error in concatNow")
 
         # Clear all data
         self.listof_concatFiles.clear()
