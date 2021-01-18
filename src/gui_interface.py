@@ -1,8 +1,7 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
 from PyQt5.QtWidgets import QFileDialog
 from src.code import concateneteLogs, mergeLogs, getHeaders, loadLogs, findExtension
-import xlrd
-
+import os
 
 class Ui(QtWidgets.QDialog):
     """
@@ -77,10 +76,11 @@ class Ui(QtWidgets.QDialog):
                                                         "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
                                                         "*.csv)")
             if value:
-                self.text_concat.setPlainText("\n".join(filenames))
+                self.text_concat.setPlainText(" -- ".join(self.path_leaf(filenames)))
                 self.listof_concatFiles = filenames
             else:
-                self.text_merge.setPlainText("\n".join(filenames))
+                # fileOnlyNames = [self.path_leaf(path) for path in filenames]
+                self.text_merge.setPlainText(" -- ".join(self.path_leaf(filenames)))
                 self.listof_mergeFiles = filenames
                 ext_in = findExtension(x)
                 frames = loadLogs(filenames, ext_in)
@@ -117,9 +117,9 @@ class Ui(QtWidgets.QDialog):
                                                       "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
                                                       "*.csv)")
             if value:
-                self.text_concat_2.setPlainText(filename)
+                self.text_concat_2.setPlainText(os.path.basename(filename))
             else:
-                self.text_merge_2.setPlainText(filename)
+                self.text_merge_2.setPlainText(os.path.basename(filename))
 
             self.output_path = filename
             print(filename)
@@ -169,8 +169,6 @@ class Ui(QtWidgets.QDialog):
             # Keys control
             lkey = self.comboBox_leftKey.currentText()
             rkey = self.comboBox_rightKey.currentText()
-            # print("Chiave left corrente = ", self.comboBox_leftKey.currentText())
-            # print("Chiave right corrente = ", self.comboBox_rightKey.currentText())
 
             if len(self.listof_mergeFiles) == 2 and len(self.output_path) > 0:
 
@@ -196,3 +194,9 @@ class Ui(QtWidgets.QDialog):
         self.text_merge_2.setPlainText("")
         self.comboBox_leftKey.clear()
         self.comboBox_rightKey.clear()
+
+    def path_leaf(self, listofpath):
+        base = list()
+        for path in listofpath:
+            base.append(os.path.basename(path))
+        return base

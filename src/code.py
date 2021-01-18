@@ -41,7 +41,7 @@ def saveLogs(result, output_path, ext_out):
         result.to_csv(output_path, index=False)
     else:
         result = result.dropna(how='all')
-        print(result.dropna(how='all'))
+        # print(result.dropna(how='all'))
         result.to_excel(output_path, header=True, index=False)
 
 
