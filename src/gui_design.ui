@@ -13,7 +13,7 @@
     <x>0</x>
     <y>0</y>
     <width>550</width>
-    <height>530</height>
+    <height>325</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,13 +25,13 @@
   <property name="minimumSize">
    <size>
     <width>550</width>
-    <height>530</height>
+    <height>325</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>550</width>
-    <height>530</height>
+    <height>325</height>
    </size>
   </property>
   <property name="palette">
@@ -471,7 +471,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>350</y>
+     <y>150</y>
      <width>320</width>
      <height>30</height>
     </rect>
@@ -487,7 +487,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>310</y>
+     <y>100</y>
      <width>510</width>
      <height>30</height>
     </rect>
@@ -495,36 +495,27 @@
    <property name="font">
     <font>
      <family>MS Sans Serif</family>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
      <weight>75</weight>
+     <italic>true</italic>
      <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>false</kerning>
     </font>
    </property>
    <property name="frameShape">
     <enum>QFrame::StyledPanel</enum>
    </property>
    <property name="text">
-    <string>Merge log files</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="Search_1">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>160</y>
-     <width>110</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Open</string>
+    <string>Merge or Concatenate your CSV / XLS / XLSX log files</string>
    </property>
   </widget>
   <widget class="QPushButton" name="Search_2">
    <property name="geometry">
     <rect>
      <x>420</x>
-     <y>350</y>
+     <y>150</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -533,30 +524,11 @@
     <string>Open</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="text_concat">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>160</y>
-     <width>320</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="inputMethodHints">
-    <set>Qt::ImhNone</set>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QPushButton" name="Concat_Now">
    <property name="geometry">
     <rect>
      <x>420</x>
-     <y>240</y>
+     <y>270</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -569,7 +541,7 @@
    <property name="geometry">
     <rect>
      <x>420</x>
-     <y>430</y>
+     <y>230</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -578,24 +550,11 @@
     <string>MERGE NOW</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="text_concat_2">
-   <property name="geometry">
-    <rect>
-     <x>90</x>
-     <y>200</y>
-     <width>320</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QTextEdit" name="text_merge_2">
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>390</y>
+     <y>190</y>
      <width>320</width>
      <height>30</height>
     </rect>
@@ -611,7 +570,7 @@
    <property name="geometry">
     <rect>
      <x>30</x>
-     <y>350</y>
+     <y>150</y>
      <width>60</width>
      <height>30</height>
     </rect>
@@ -628,53 +587,11 @@
     <cstring>text_merge</cstring>
    </property>
   </widget>
-  <widget class="QLabel" name="Input_label_2">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>160</y>
-     <width>60</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Input:</string>
-   </property>
-   <property name="buddy">
-    <cstring>text_concat</cstring>
-   </property>
-  </widget>
-  <widget class="QLabel" name="Output_label_1">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>200</y>
-     <width>70</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Output:</string>
-   </property>
-   <property name="buddy">
-    <cstring>text_concat_2</cstring>
-   </property>
-  </widget>
   <widget class="QLabel" name="Output_label_2">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>390</y>
+     <y>190</y>
      <width>70</width>
      <height>30</height>
     </rect>
@@ -691,35 +608,11 @@
     <cstring>text_merge_2</cstring>
    </property>
   </widget>
-  <widget class="QLabel" name="Concatenate">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>120</y>
-     <width>510</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>MS Sans Serif</family>
-     <pointsize>12</pointsize>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::StyledPanel</enum>
-   </property>
-   <property name="text">
-    <string>Concatenate log files</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="Key_label">
    <property name="geometry">
     <rect>
      <x>29</x>
-     <y>430</y>
+     <y>230</y>
      <width>41</width>
      <height>30</height>
     </rect>
@@ -737,20 +630,7 @@
    <property name="geometry">
     <rect>
      <x>420</x>
-     <y>390</y>
-     <width>110</width>
-     <height>30</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Save</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="Save_1">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>200</y>
+     <y>190</y>
      <width>110</width>
      <height>30</height>
     </rect>
@@ -802,7 +682,7 @@
    <property name="geometry">
     <rect>
      <x>255</x>
-     <y>430</y>
+     <y>230</y>
      <width>155</width>
      <height>30</height>
     </rect>
@@ -812,7 +692,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>430</y>
+     <y>230</y>
      <width>155</width>
      <height>30</height>
     </rect>
@@ -825,7 +705,7 @@
    <property name="geometry">
     <rect>
      <x>90</x>
-     <y>470</y>
+     <y>270</y>
      <width>155</width>
      <height>30</height>
     </rect>
@@ -854,8 +734,8 @@
   <widget class="QLabel" name="Console_concat">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>240</y>
+     <x>255</x>
+     <y>270</y>
      <width>155</width>
      <height>30</height>
     </rect>
@@ -878,34 +758,49 @@
     <cstring>text_merge</cstring>
    </property>
   </widget>
+  <widget class="QLabel" name="design">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>300</y>
+     <width>91</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MS Sans Serif</family>
+     <pointsize>5</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="text">
+    <string>by Chrism1c</string>
+   </property>
+  </widget>
   <zorder>Logo</zorder>
   <zorder>text_merge</zorder>
   <zorder>Merge</zorder>
-  <zorder>Search_1</zorder>
   <zorder>Search_2</zorder>
-  <zorder>text_concat</zorder>
   <zorder>Concat_Now</zorder>
   <zorder>Merge_Now</zorder>
-  <zorder>text_concat_2</zorder>
   <zorder>text_merge_2</zorder>
   <zorder>Input_label_1</zorder>
-  <zorder>Input_label_2</zorder>
-  <zorder>Output_label_1</zorder>
   <zorder>Output_label_2</zorder>
-  <zorder>Concatenate</zorder>
   <zorder>Key_label</zorder>
   <zorder>Save_2</zorder>
-  <zorder>Save_1</zorder>
   <zorder>comboBox_rightKey</zorder>
   <zorder>comboBox_leftKey</zorder>
   <zorder>Console_merge</zorder>
   <zorder>Console_concat</zorder>
+  <zorder>design</zorder>
  </widget>
  <tabstops>
-  <tabstop>text_concat</tabstop>
-  <tabstop>Search_1</tabstop>
-  <tabstop>text_concat_2</tabstop>
-  <tabstop>Save_1</tabstop>
   <tabstop>Concat_Now</tabstop>
   <tabstop>text_merge</tabstop>
   <tabstop>Search_2</tabstop>

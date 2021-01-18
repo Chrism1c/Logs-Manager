@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QFileDialog
 from src.code import concateneteLogs, mergeLogs, getHeaders, loadLogs, findExtension
 import os
 
+
 class Ui(QtWidgets.QDialog):
     """
     Main gui-Window class
@@ -21,33 +22,23 @@ class Ui(QtWidgets.QDialog):
         self.listof_concatFiles = list()
         self.listof_mergeFiles = list()
 
-        self.Search_1_button = self.findChild(QtWidgets.QPushButton, 'Search_1')
-        self.Search_1_button.setToolTip('Select input files names')
-        self.Search_1_button.clicked.connect(
-            lambda: self.fileDialog(True))
-        self.concat_input_text = self.findChild(QtWidgets.QTextEdit, 'text_concat').setToolTip(
-            'Selected input files path')
-        self.Save_1_button = self.findChild(QtWidgets.QPushButton, 'Save_1')
-        self.Save_1_button.setToolTip('Select output file name')
-        self.Save_1_button.clicked.connect(
-            lambda: self.fileDialogSave(True))
-        self.concat_output_text = self.findChild(QtWidgets.QTextEdit, 'text_concat_2').setToolTip(
-            'Selected output file path')
         self.ConcatNow_button = self.findChild(QtWidgets.QPushButton, 'Concat_Now')
         self.ConcatNow_button.setToolTip('Execute concatenation on selected files')
         self.ConcatNow_button.clicked.connect(
             lambda: self.concatNow())
 
+        self.design.setToolTip('https://github.com/Chrism1c/Logs-Manager')
+
         self.Search_2_button = self.findChild(QtWidgets.QPushButton, 'Search_2')
         self.Search_2_button.setToolTip('Select input files names')
         self.Search_2_button.clicked.connect(
-            lambda: self.fileDialog(False))
+            lambda: self.fileDialog())
         self.merge_input_text = self.findChild(QtWidgets.QTextEdit, 'text_merge').setToolTip(
             'Selected input files path')
         self.Save_2_button = self.findChild(QtWidgets.QPushButton, 'Save_2')
         self.Save_2_button.setToolTip('Select output file name')
         self.Save_2_button.clicked.connect(
-            lambda: self.fileDialogSave(False))
+            lambda: self.fileDialogSave())
         self.merge_output_text = self.findChild(QtWidgets.QTextEdit, 'text_merge_2').setToolTip(
             'Selected output file path')
         self.MergeNow_button = self.findChild(QtWidgets.QPushButton, 'Merge_Now')
@@ -59,10 +50,9 @@ class Ui(QtWidgets.QDialog):
         self.comboBox_rightKey.setToolTip('Key header from file 2')
         self.show()
 
-    def fileDialog(self, value):
+    def fileDialog(self):
         """
         Procedure useful to select input files
-        :param value: boolean value to choose merge/concat operation
         :return:  none
         """
         try:
@@ -75,30 +65,26 @@ class Ui(QtWidgets.QDialog):
                                                         "Cartella di lavoro Excel (*.xlsx);;Cartella di lavoro Excel "
                                                         "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
                                                         "*.csv)")
-            if value:
-                self.text_concat.setPlainText(" -- ".join(self.path_leaf(filenames)))
-                self.listof_concatFiles = filenames
-            else:
-                # fileOnlyNames = [self.path_leaf(path) for path in filenames]
-                self.text_merge.setPlainText(" -- ".join(self.path_leaf(filenames)))
-                self.listof_mergeFiles = filenames
-                ext_in = findExtension(x)
-                frames = loadLogs(filenames, ext_in)
-                leftColumns, rightColumns = getHeaders(frames)
-                for elem in leftColumns:
-                    self.comboBox_leftKey.addItem(elem)
-                for elem in rightColumns:
-                    self.comboBox_rightKey.addItem(elem)
+
+            self.listof_concatFiles = filenames
+            self.listof_mergeFiles = filenames
+            self.text_merge.setPlainText(" -- ".join(self.path_leaf(filenames)))
+            ext_in = findExtension(x)
+            frames = loadLogs(filenames, ext_in)
+            leftColumns, rightColumns = getHeaders(frames)
+            for elem in leftColumns:
+                self.comboBox_leftKey.addItem(elem)
+            for elem in rightColumns:
+                self.comboBox_rightKey.addItem(elem)
             print(filenames)
         except:
             print("***** Error in fileDialog")
             # Clear all data
             self.text_merge.setPlainText("")
-            self.text_concat.setPlainText("")
             self.listof_concatFiles.clear
             self.listof_mergeFiles.clear
 
-    def fileDialogSave(self, value):
+    def fileDialogSave(self):
         """
         Procedure useful to select name and directory of the output file
         :param value: boolean value to choose merge/concat operation
@@ -116,18 +102,14 @@ class Ui(QtWidgets.QDialog):
                                                       "Cartella di lavoro Excel (*.xlsx);;Cartella di lavoro Excel "
                                                       "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
                                                       "*.csv)")
-            if value:
-                self.text_concat_2.setPlainText(os.path.basename(filename))
-            else:
-                self.text_merge_2.setPlainText(os.path.basename(filename))
 
+            self.text_merge_2.setPlainText(os.path.basename(filename))
             self.output_path = filename
             print(filename)
         except:
             print("***** Error in fileDialogSave")
             # Clear all data
             self.text_merge_2.setPlainText("")
-            self.text_concat_2.setPlainText("")
             self.output_path = ""
 
     def concatNow(self):
@@ -135,30 +117,32 @@ class Ui(QtWidgets.QDialog):
         Procedure useful to control inputs value before concat operation
         :return:
         """
-        # try:
-        if len(self.listof_concatFiles) > 1 and len(self.output_path) > 1:
 
-            ext_in = findExtension(self.listof_concatFiles[0])
-            ext_out = findExtension(self.output_path)
+        try:
+            if len(self.listof_concatFiles) > 1 and len(self.output_path) > 1:
+                ext_in = findExtension(self.listof_concatFiles[0])
+                ext_out = findExtension(self.output_path)
 
-            concateneteLogs(self.listof_concatFiles, self.output_path, ext_in, ext_out)
+                concateneteLogs(self.listof_concatFiles, self.output_path, ext_in, ext_out)
 
-            print('Concat succesful !')
-            self.Console_concat.setText("Concat succesful !")
-            self.Console_concat.setStyleSheet("background-color: lightgreen;")
-        else:
-            print('Concat failed !\n NB:\n- Select two ore more input files [OPEN] \n- Define one output file ['
-                  'SAVE]')
-            self.Console_concat.setText("Concat failed !")
-            self.Console_concat.setStyleSheet("background-color: red;")
-        # except:
-        #     print("***** Error in concatNow")
+                print('Concat succesful !')
+                self.Console_concat.setText("Concat succesful !")
+                self.Console_concat.setStyleSheet("background-color: lightgreen;")
+            else:
+                print('Concat failed !\n NB:\n- Select two ore more input files [OPEN] \n- Define one output file ['
+                      'SAVE]')
+                self.Console_concat.setText("Concat failed !")
+                self.Console_concat.setStyleSheet("background-color: red;")
+        except:
+            print("***** Error in concatNow")
 
         # Clear all data
         self.listof_concatFiles.clear()
         self.output_path = ""
-        self.text_concat.setPlainText("")
-        self.text_concat_2.setPlainText("")
+        self.text_merge.setPlainText("")
+        self.text_merge_2.setPlainText("")
+        self.comboBox_leftKey.clear()
+        self.comboBox_rightKey.clear()
 
     def mergeNow(self):
         """
