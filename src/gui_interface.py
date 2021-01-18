@@ -27,8 +27,6 @@ class Ui(QtWidgets.QDialog):
         self.ConcatNow_button.clicked.connect(
             lambda: self.concatNow())
 
-        self.design.setToolTip('https://github.com/Chrism1c/Logs-Manager')
-
         self.Search_2_button = self.findChild(QtWidgets.QPushButton, 'Search_2')
         self.Search_2_button.setToolTip('Select input files names')
         self.Search_2_button.clicked.connect(
@@ -48,6 +46,9 @@ class Ui(QtWidgets.QDialog):
 
         self.comboBox_leftKey.setToolTip('Key header from file 1')
         self.comboBox_rightKey.setToolTip('Key header from file 2')
+
+        self.design.setToolTip('https://github.com/Chrism1c/Logs-Manager')
+
         self.show()
 
     def fileDialog(self):

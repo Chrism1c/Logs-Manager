@@ -80,10 +80,6 @@ PyQt5: [**pypi.org/project/PyQt5**](https://pypi.org/project/PyQt5/) <br>
 2 - Click on "Save" button and select name and directory of the output file (CSV/XLS/XLSX)<br>
 3 - Click on "MERGE NOW" to execute concatenation of log files<br>
 
-![](images/XXXX.png)
-<p align="center">
-  <img src="images/XXXX.png">
-</p>
 
 </li>
 <li>
