@@ -1,7 +1,9 @@
+import os
+
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
 from PyQt5.QtWidgets import QFileDialog
+
 from src.code import concateneteLogs, mergeLogs, getHeaders, loadLogs, findExtension
-import os, sys
 
 
 class Ui(QtWidgets.QDialog):
@@ -14,10 +16,12 @@ class Ui(QtWidgets.QDialog):
         init function for the gui window
         """
         super(Ui, self).__init__()
-        uic.loadUi('src/gui_design.ui', self)
+        # uic.loadUi(r'H:\LogsManager\src\gui_design.ui', self)         ## fullPath necessario per il deploy .exe
+        uic.loadUi(r'src\gui_design.ui', self)
 
         self.setWindowFlags(QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
-        self.setWindowIcon(QtGui.QIcon("images/icon.png"))
+        # self.setWindowIcon(QtGui.QIcon(r"H:\LogsManager\images\icon.png"))   ## fullPath necessario per il deploy .exe
+        self.setWindowIcon(QtGui.QIcon(r"images\icon.png"))
         self.output_path = ""
         self.listof_concatFiles = list()
         self.listof_mergeFiles = list()
