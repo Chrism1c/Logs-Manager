@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
 from PyQt5.QtWidgets import QFileDialog
 from src.code import concateneteLogs, mergeLogs, getHeaders, loadLogs, findExtension
-import os
+import os, sys
 
 
 class Ui(QtWidgets.QDialog):
@@ -46,6 +46,7 @@ class Ui(QtWidgets.QDialog):
 
         self.comboBox_leftKey.setToolTip('Key header from file 1')
         self.comboBox_rightKey.setToolTip('Key header from file 2')
+        self.comboBox_mergeType.setToolTip('Select the type of merge to perform')
 
         self.design.setToolTip('https://github.com/Chrism1c/Logs-Manager')
 
@@ -58,14 +59,12 @@ class Ui(QtWidgets.QDialog):
         """
         try:
             # Clear console labels
-            self.Console_merge.setText("")
-            self.Console_merge.setStyleSheet("background-color: none;")
-            self.Console_concat.setText("")
-            self.Console_concat.setStyleSheet("background-color: none;")
+            self.Console.setText("")
+            self.Console.setStyleSheet("background-color: none;")
             filenames, x = QFileDialog.getOpenFileNames(self, "Select input files (2+ Concat | Only 2 Merge)", "",
-                                                        "Cartella di lavoro Excel (*.xlsx);;Cartella di lavoro Excel "
-                                                        "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
-                                                        "*.csv)")
+                                                        "CSV (Delimitato dal separatore di elenco) (*.csv);;"
+                                                        "Cartella di lavoro Excel (*.xlsx);;"
+                                                        "Cartella di lavoro Excel 97-2003 (*.xls)")
 
             self.listof_concatFiles = filenames
             self.listof_mergeFiles = filenames
@@ -73,13 +72,16 @@ class Ui(QtWidgets.QDialog):
             ext_in = findExtension(x)
             frames = loadLogs(filenames, ext_in)
             leftColumns, rightColumns = getHeaders(frames)
+            mergeTypes = ['left', 'right', 'outer', 'inner']
             for elem in leftColumns:
                 self.comboBox_leftKey.addItem(elem)
             for elem in rightColumns:
                 self.comboBox_rightKey.addItem(elem)
+            for elem in mergeTypes:
+                self.comboBox_mergeType.addItem(elem)
             print(filenames)
         except:
-            print("***** Error in fileDialog")
+            print("***** exception in fileDialog")
             # Clear all data
             self.text_merge.setPlainText("")
             self.listof_concatFiles.clear
@@ -93,22 +95,20 @@ class Ui(QtWidgets.QDialog):
         """
 
         # Clear console labels
-        self.Console_merge.setText("")
-        self.Console_merge.setStyleSheet("background-color: none;")
-        self.Console_concat.setText("")
-        self.Console_concat.setStyleSheet("background-color: none;")
+        self.Console.setText("")
+        self.Console.setStyleSheet("background-color: none;")
 
         try:
             filename, x = QFileDialog.getSaveFileName(self, "Save file as:", "",
-                                                      "Cartella di lavoro Excel (*.xlsx);;Cartella di lavoro Excel "
-                                                      "97-2003 (*.xls);;CSV (Delimitato dal separatore di elenco) ("
-                                                      "*.csv)")
+                                                      "CSV (Delimitato dal separatore di elenco) (*.csv);;"
+                                                      "Cartella di lavoro Excel (*.xlsx);;"
+                                                      "Cartella di lavoro Excel 97-2003 (*.xls)")
 
             self.text_merge_2.setPlainText(os.path.basename(filename))
             self.output_path = filename
             print(filename)
         except:
-            print("***** Error in fileDialogSave")
+            print("***** exception in fileDialogSave")
             # Clear all data
             self.text_merge_2.setPlainText("")
             self.output_path = ""
@@ -118,7 +118,6 @@ class Ui(QtWidgets.QDialog):
         Procedure useful to control inputs value before concat operation
         :return:
         """
-
         try:
             if len(self.listof_concatFiles) > 1 and len(self.output_path) > 1:
                 ext_in = findExtension(self.listof_concatFiles[0])
@@ -127,15 +126,15 @@ class Ui(QtWidgets.QDialog):
                 concateneteLogs(self.listof_concatFiles, self.output_path, ext_in, ext_out)
 
                 print('Concat succesful !')
-                self.Console_concat.setText("Concat succesful !")
-                self.Console_concat.setStyleSheet("background-color: lightgreen;")
+                self.Console.setText("Concat succesful !")
+                self.Console.setStyleSheet("background-color: lightgreen;")
             else:
                 print('Concat failed !\n NB:\n- Select two ore more input files [OPEN] \n- Define one output file ['
                       'SAVE]')
-                self.Console_concat.setText("Concat failed !")
-                self.Console_concat.setStyleSheet("background-color: red;")
+                self.Console.setText("Concat failed !")
+                self.Console.setStyleSheet("background-color: red;")
         except:
-            print("***** Error in concatNow")
+            print("***** exception in concatNow")
 
         # Clear all data
         self.listof_concatFiles.clear()
@@ -144,6 +143,7 @@ class Ui(QtWidgets.QDialog):
         self.text_merge_2.setPlainText("")
         self.comboBox_leftKey.clear()
         self.comboBox_rightKey.clear()
+        self.comboBox_mergeType.clear()
 
     def mergeNow(self):
         """
@@ -154,23 +154,24 @@ class Ui(QtWidgets.QDialog):
             # Keys control
             lkey = self.comboBox_leftKey.currentText()
             rkey = self.comboBox_rightKey.currentText()
+            how_merge = self.comboBox_mergeType.currentText()
 
             if len(self.listof_mergeFiles) == 2 and len(self.output_path) > 0:
 
                 ext_in = findExtension(self.listof_mergeFiles[0])
                 ext_out = findExtension(self.output_path)
 
-                mergeLogs(lkey, rkey, self.listof_mergeFiles, self.output_path, ext_in, ext_out)
+                mergeLogs(how_merge, lkey, rkey, self.listof_mergeFiles, self.output_path, ext_in, ext_out)
 
                 print('Merge succesful !')
-                self.Console_merge.setText("Merge succesful !")
-                self.Console_merge.setStyleSheet("background-color: lightgreen;")
+                self.Console.setText("Merge succesful !")
+                self.Console.setStyleSheet("background-color: lightgreen;")
             else:
                 print('Merge failed !\n NB:\n- Select only two input files [OPEN] \n- Define one output file [SAVE]')
-                self.Console_merge.setText("Merge failed !")
-                self.Console_merge.setStyleSheet("background-color: red;")
+                self.Console.setText("Merge failed !")
+                self.Console.setStyleSheet("background-color: red;")
         except:
-            print("***** Error in mergeNow")
+            print("***** exception in mergeNow")
 
         # Clear all data
         self.listof_mergeFiles.clear()
@@ -179,6 +180,7 @@ class Ui(QtWidgets.QDialog):
         self.text_merge_2.setPlainText("")
         self.comboBox_leftKey.clear()
         self.comboBox_rightKey.clear()
+        self.comboBox_mergeType.clear()
 
     def path_leaf(self, listofpath):
         base = list()

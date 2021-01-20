@@ -40,9 +40,10 @@ def saveLogs(result, output_path, ext_out):
         result.to_excel(output_path, header=True, index=False)
 
 
-def mergeLogs(lkey, rkey, file_names, output_path, ext_in, ext_out):
+def mergeLogs(how_merge, lkey, rkey, file_names, output_path, ext_in, ext_out):
     """
     Procedure useful to execute the merge between two log files using a key header name
+    :param how_merge: string object to select the type of join to perform ['left', 'right', 'outer', 'inner']
     :param lkey: string object of the selected header to use as key in the first dataframe
     :param rkey: string object of the selected header to use as key in the second dataframe
     :param file_names: list of selected file names
@@ -52,11 +53,25 @@ def mergeLogs(lkey, rkey, file_names, output_path, ext_in, ext_out):
     :return: none
     """
     frames = loadLogs(file_names, ext_in)
-    if ext_in == 'csv':
-        result = frames[0].merge(frames[1], left_on=lkey, right_on=rkey)
-    else:
-        result = frames[0].merge(frames[1], left_on=lkey, right_on=rkey)
+
+    result = pd.merge(frames[0], frames[1], how=how_merge, left_on=lkey, right_on=rkey)
     saveLogs(result, output_path, ext_out)
+
+    # TEST JOINS #
+
+    # mergeTypes = ['left', 'right', 'outer', 'inner']
+    # results = list()
+    # for how_merge in mergeTypes:
+    #     print('\nhow_merge: ', how_merge)
+    #     result = pd.merge(frames[0], frames[1], how=how_merge, left_on=lkey, right_on=rkey)
+    #     print(result)
+    #     results.append(result)
+    # print("0-1 ", results[0].equals(results[1]))
+    # print("0-2 ", results[0].equals(results[2]))
+    # print("0-3 ", results[0].equals(results[3]))
+    # print("1-2 ", results[1].equals(results[2]))
+    # print("1-3 ", results[1].equals(results[3]))
+    # print("2-3 ", results[2].equals(results[3]))
 
 
 def concateneteLogs(file_names, output_path, ext_in, ext_out):
