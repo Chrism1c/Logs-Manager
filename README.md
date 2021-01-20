@@ -43,6 +43,8 @@ in addiction, it can allow merge two log files using a key (column name) at the 
 Python 3.5.3 or higher (tested on 3.7 64bit)
 pandas~=1.0.3   [python 3.5.3+]
 PyQt5~=5.15.1   [python 3.5+]
+xlrd
+openpyxl
  ```  
 	
 **Resources for dependencies required** <br>
@@ -55,8 +57,8 @@ PyQt5: [**pypi.org/project/PyQt5**](https://pypi.org/project/PyQt5/) <br>
 ## Quick Start
 
 1 - Clone this repository <br> 
-2 - Install all dependencies with "pip3 install -r requirements.txt" <br> 
-3 - Execute "main.py" <br>
+2 - run "Check and Install Python.cmd" <br>
+3 - Execute "LogsManager - wConsole.bat" or "LogsManager - noConsole.bat"<br> 
 4 - Good work with **Logs Manager** <br>
 
 </li>
@@ -71,16 +73,24 @@ PyQt5: [**pypi.org/project/PyQt5**](https://pypi.org/project/PyQt5/) <br>
 - All input files must have the same extension but the output file could be chosen as different one: (CSV->XLSX | XLSX->CSV)
 
 ### Concatenete Function <br> 
-1 - Click on "Open" button and select 2 or more log files (CSV/XLS/XLSX)<br>
+1 - Click on "Open" button and select 2 or more log files (CSV/XLS/XLSX) NB: they must have the same extension<br>
 2 - Click on "Save" button and select name and directory of the output file (CSV/XLS/XLSX)<br>
 3 - Click on "CONCAT NOW" to execute concatenation of log files<br> 
 
 ### Merge Function <br>
-1 - Click on "Open" button and select 2 log files (CSV/XLS/XLSX)<br>
+1 - Click on "Open" button and select 2 log files (CSV/XLS/XLSX) NB: they must have the same extension<br>
 2 - Click on "Save" button and select name and directory of the output file (CSV/XLS/XLSX)<br>
-3 - Click on "MERGE NOW" to execute concatenation of log files<br>
+3 - Select witch type of merge to execute (left,right,outer,inner)<br>
+4 - Select right and left keys to execute merge (Primary Keys)<br>
+5 - Click on "MERGE NOW" to execute concatenation of log files<br>
 
-
+### GUI Output examples <br>
+<p align="center">
+  <img src="images/logsmanager_image_succesful.png">
+</p>
+<p align="center">
+  <img src="images/logsmanager_image_failed.png">
+</p>
 </li>
 <li>
 
