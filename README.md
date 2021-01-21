@@ -1,7 +1,7 @@
 # Logs Manager
 ### Gui app useful to concatenete or execute a key based merge (database like) on your csv/xlsx/xls files<br>
 <p align="center">
-  <img src="images/logsmanager_image.png">
+  <img src="src/images/logsmanager_image.png">
 </p>
 
 ### Index
@@ -90,11 +90,12 @@ ___
 5 - Click on "MERGE NOW" to execute concatenation of log files<br>
 
 ### GUI Output examples <br>
+
 <p align="center">
-  <img src="images/logsmanager_image_succesful.png">
+  <img src="src/images/logsmanager_image_succesful.png">
 </p>
 <p align="center">
-  <img src="images/logsmanager_image_failed.png">
+  <img src="src/images/logsmanager_image_failed.png">
 </p>
 </li>
 <li>

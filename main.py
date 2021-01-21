@@ -1,4 +1,4 @@
-from src.gui_interface import *
+from gui_interface import *
 import sys
 import ctypes
 
