@@ -56,13 +56,17 @@ PyQt5: [**pypi.org/project/PyQt5**](https://pypi.org/project/PyQt5/) <br>
 
 ## Quick Start
 
-**Stand alone app:**<br>
-1 - run "LogsMerger.exe"
+**Stand alone app (No Python required)**<br>
+0 - Download this repository <br>
+1 - Execute "LogsManager.exe"<br>
+1 ALTERNATIVE - Execute "LogsManager_noConsole.vbs" (in the same dir of LogsManager.exe)<br>
+2 - Good work with **Logs Manager** <br>
 ___
-**With Python interpreter:**<br>
-1 - Clone this repository <br> 
-2 - run "Check and Install Python.cmd" <br>
-3 - Execute "LogsManager - noConsole.vbs"<br> 
+**With Python interpreter :**<br>
+0 - Download this repository <br>
+2 - Execute "Check and Install Python.cmd"<br>
+3 - Execute "LogsManager - noConsole.vbs"<br>
+3 ALTERNATIVE - Execute "LogsManager - wConsole.bat"<br>
 4 - Good work with **Logs Manager** <br>
 
 
