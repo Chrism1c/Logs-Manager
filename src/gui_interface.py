@@ -16,11 +16,11 @@ class Ui(QtWidgets.QDialog):
         init function for the gui window
         """
         super(Ui, self).__init__()
-        # uic.loadUi(r'H:\LogsManager\src\gui_design.ui', self)         ## fullPath necessario per il deploy .exe
+        # uic.loadUi(r'C:\Users\chris\Logs-Manager\src\gui_design.ui', self)         ## fullPath necessario per il deploy .exe
         uic.loadUi(r'src\gui_design.ui', self)
 
         self.setWindowFlags(QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
-        # self.setWindowIcon(QtGui.QIcon(r"H:\LogsManager\images\icon.png"))   ## fullPath necessario per il deploy .exe
+        # self.setWindowIcon(QtGui.QIcon(r"C:\Users\chris\Logs-Manager\images\icon.ico"))   ## fullPath necessario per il deploy .exe
         self.setWindowIcon(QtGui.QIcon(r"images\icon.png"))
         self.output_path = ""
         self.listof_concatFiles = list()
