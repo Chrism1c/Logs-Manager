@@ -18,14 +18,12 @@ class Ui(QtWidgets.QDialog):
         super(Ui, self).__init__()
 
         gui_full_path = resource_path('gui_design.ui')
-        icon_full_path = resource_path('icon.png')
+        icon_full_path = resource_path('src\images\icon.png')
 
-        # uic.loadUi(r'C:\Users\chris\Logs-Manager\src\gui_design.ui', self)         ## fullPath necessario per il deploy .exe
         # uic.loadUi(r'src\gui_design.ui', self)
         uic.loadUi(gui_full_path, self)
 
         self.setWindowFlags(QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
-        # self.setWindowIcon(QtGui.QIcon(r"C:\Users\chris\Logs-Manager\images\icon.ico"))   ## fullPath necessario per il deploy .exe
         # self.setWindowIcon(QtGui.QIcon(r"images\icon.png"))
         self.setWindowIcon(QtGui.QIcon(icon_full_path))
         self.output_path = ""
