@@ -10,25 +10,25 @@ python -V | find "Python"    >NUL 2>NUL && (goto :PYTHON_DOES_EXIST)
 :PYTHON_DOES_NOT_EXIST
 @	echo [91mPython non e' installato nel tuo sistema!
 @	echo Installero' per te python 3.8.0...[0m
-
-:: start "" "https://www.python.org/downloads/windows/"
-
-/quiet InstallAllUsers=1 PrependPath=1 Include_test=0
 @   set dir=%~dp0
 @   set ps1="%TMP%\%~n0-%RANDOM%-%RANDOM%-%RANDOM%-%RANDOM%.ps1"
 @   copy /b /y "%~f0" %ps1% >nul
 @   powershell -NoProfile -ExecutionPolicy Bypass -File %ps1% %*
 @   del /f %ps1%
-
-@	PAUSE
 @	goto :EOF
 
 :PYTHON_DOES_EXIST
 :: This will retrieve Python 3.8.0 for example.
 @	for /f "delims=" %%V in ('python -V') do @set ver=%%V
 @	echo [92mCongratulazioni, %ver% e' installato correttamente ![0m
-
-@	PAUSE
+@ for /F "tokens=1,2 delims= " %%a in ('python -V') do (
+@   echo %%a
+@   echo %%b
+@	if /i %%b GEQ 3.7 echo YES
+@	if /i %%b LSS 3.7 (
+@		echo NO
+@		goto :PYTHON_DOES_NOT_EXIST)
+)
 @   goto :eof
 #>
 
@@ -37,9 +37,13 @@ python -V | find "Python"    >NUL 2>NUL && (goto :PYTHON_DOES_EXIST)
 # In this example, all arguments are echoed.
 $Args | % { 'arg #{0}: [{1}]' -f ++$i, $_ }
 
-# This is the link to download Python 3.8.0 from Python.org
-# See https://www.python.org/downloads/
-$pythonUrl = "https://www.python.org/ftp/python/3.8.0/python-3.8.0-amd64.exe"
+$OSVersion = [Environment]::Is64BitOperatingSystem
+if($OSVersion){
+	$pythonUrl = "https://www.python.org/ftp/python/3.8.0/python-3.8.0-amd64.exe"
+}else{
+	$pythonUrl = "https://www.python.org/ftp/python/3.8.0/python-3.8.0.exe"
+}
+
 
 # This is the directory that the exe is downloaded to
 $tempDirectory = "C:\temp_provision\"
@@ -179,10 +183,3 @@ Param (
 Add-EnvExtension '.PY'
 Add-EnvExtension '.PYW'
 Add-EnvPath 'C:\Python38\'
-
-
-
-
-
-
-

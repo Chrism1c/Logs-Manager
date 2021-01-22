@@ -43,8 +43,10 @@ in addiction, it can allow merge two log files using a key (column name) at the 
 Python 3.5.3 or higher (tested on 3.7 64bit)
 pandas~=1.0.3   [python 3.5.3+]
 PyQt5~=5.15.1   [python 3.5+]
-xlrd
-openpyxl
+xlrd~=1.2.0
+et-xmlfile~=1.0.1
+jdcal~=1.2.1
+openpyxl~=3.0.5
  ```  
 	
 **Resources for dependencies required** <br>
@@ -56,18 +58,15 @@ PyQt5: [**pypi.org/project/PyQt5**](https://pypi.org/project/PyQt5/) <br>
 
 ## Quick Start
 
-**Stand alone app (No Python required)**<br>
-0 - Download this repository <br>
-1 - Execute "LogsManager.exe"<br>
+**Automatic Setup installer with Python :**<br>
+1 - Download and Install "Setup - Logs Manager.exe" <br>
+2 - Good work with **Logs Manager** <br>
+NB: Internet Connection required
+___
+**Portable app (No Python required)**<br>
+1 - Download and Execute "LogsManager.exe"<br>
 1 ALTERNATIVE - Execute "LogsManager_noConsole.vbs" (in the same dir of LogsManager.exe)<br>
 2 - Good work with **Logs Manager** <br>
-___
-**With Python interpreter :**<br>
-0 - Download this repository <br>
-2 - Execute "Check and Install Python.cmd"<br>
-3 - Execute "LogsManager - noConsole.vbs"<br>
-3 ALTERNATIVE - Execute "LogsManager - wConsole.bat"<br>
-4 - Good work with **Logs Manager** <br>
 
 
 </li>
