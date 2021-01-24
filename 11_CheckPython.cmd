@@ -11,7 +11,7 @@ python -V | find "Python"    >NUL 2>NUL && (goto :PYTHON_DOES_EXIST)
 @	echo [91mPython non e' installato nel tuo sistema!
 @	echo Installero' per te python 3.8.0...[0m
 @   set dir=%~dp0
-@   set ps1="%TMP%\%~n0-%RANDOM%-%RANDOM%-%RANDOM%-%RANDOM%.ps1"
+@   set ps1="%~dp0\%~n0-%RANDOM%-%RANDOM%-%RANDOM%-%RANDOM%.ps1"
 @   copy /b /y "%~f0" %ps1% >nul
 @   powershell -NoProfile -ExecutionPolicy Bypass -File %ps1% %*
 @   del /f %ps1%
@@ -37,26 +37,23 @@ python -V | find "Python"    >NUL 2>NUL && (goto :PYTHON_DOES_EXIST)
 # In this example, all arguments are echoed.
 $Args | % { 'arg #{0}: [{1}]' -f ++$i, $_ }
 
-$OSVersion = [Environment]::Is64BitOperatingSystem
-if($OSVersion){
-	$pythonUrl = "https://www.python.org/ftp/python/3.8.0/python-3.8.0-amd64.exe"
-}else{
-	$pythonUrl = "https://www.python.org/ftp/python/3.8.0/python-3.8.0.exe"
-}
-
-
-# This is the directory that the exe is downloaded to
-$tempDirectory = "C:\temp_provision\"
-
 # Installation Directory
 # Some packages look for Python here
 $targetDir = "C:\Python38"
 
-# create the download directory and get the exe file
-$pythonNameLoc = $tempDirectory + "python38.exe"
-New-Item -ItemType directory -Path $tempDirectory -Force | Out-Null
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-(New-Object System.Net.WebClient).DownloadFile($pythonUrl, $pythonNameLoc)
+$scriptPath = split-path -parent $MyInvocation.MyCommand.Definition
+# Write-Output ($scriptPath)
+
+$OSVersion = [Environment]::Is64BitOperatingSystem
+if($OSVersion){
+	$pythonPath = "\src\req\x64\python-3.8.0-amd64.exe"
+}else{
+	$pythonPath = "\src\req\x86\python-3.8.0.exe"
+}
+$pythonNameLoc = $scriptPath + $pythonPath
+
+# Write-Output ($pythonNameLoc)
+# Read-Host -Prompt "Press any key to continue"
 
 # These are the silent arguments for the install of python
 # See https://docs.python.org/3/using/windows.html
@@ -86,6 +83,7 @@ $Arguments += 'Include_launcher="1"'
 $Arguments += 'Include_launcher="1"'
 $Arguments += 'Include_launcher="1"'
 $Arguments += 'Include_launcher="1"'
+
 
 #Install Python
 Start-Process $pythonNameLoc -ArgumentList $Arguments -Wait
