@@ -40,13 +40,18 @@ in addiction, it can allow merge two log files using a key (column name) at the 
 
 ## Requirements and Dependencies
 ```
-Python 3.5.3 or higher (tested on 3.7 64bit)
-pandas~=1.0.3   [python 3.5.3+]
-PyQt5~=5.15.1   [python 3.5+]
+Python 3.5.3 or higher (tested on 3.7 and 3.8)
+python-dateutil~=2.6.1
+pytz~=2017.2
+six~=1.5
 xlrd~=1.2.0
+jdcal~=1.4.1
 et-xmlfile~=1.0.1
-jdcal~=1.2.1
 openpyxl~=3.0.5
+pandas~=1.0.3
+numpy
+PyQt5-sip<13,~=12.8
+PyQt5~=5.15.1
  ```  
 	
 **Resources for dependencies required** <br>
