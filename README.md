@@ -48,8 +48,8 @@ xlrd~=1.2.0
 jdcal~=1.4.1
 et-xmlfile~=1.0.1
 openpyxl~=3.0.5
-pandas~=1.0.3
 numpy
+pandas~=1.0.3
 PyQt5-sip<13,~=12.8
 PyQt5~=5.15.1
  ```  
@@ -64,7 +64,7 @@ PyQt5: [**pypi.org/project/PyQt5**](https://pypi.org/project/PyQt5/) <br>
 ## Quick Start
 
 **Automatic Setup installer with Python :**<br>
-1 - Download and Install "Setup - Logs Manager.exe" <br>
+1 - Download and Install "Logs Manager - Setup Online.exe" <br>
 2 - Good work with **Logs Manager** <br>
 NB: Internet Connection required
 
