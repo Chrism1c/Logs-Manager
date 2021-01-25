@@ -67,12 +67,6 @@ PyQt5: [**pypi.org/project/PyQt5**](https://pypi.org/project/PyQt5/) <br>
 1 - Download and Install "Setup - Logs Manager.exe" <br>
 2 - Good work with **Logs Manager** <br>
 NB: Internet Connection required
-___
-**Portable app (No Python required)**<br>
-1 - Download and Execute "LogsManager.exe"<br>
-1 ALTERNATIVE - Execute "LogsManager_noConsole.vbs" (in the same dir of LogsManager.exe)<br>
-2 - Good work with **Logs Manager** <br>
-
 
 </li>
 <li>
