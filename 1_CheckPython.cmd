@@ -9,7 +9,7 @@ python -V | find "Python"    >NUL 2>NUL && (goto :PYTHON_DOES_EXIST)
 
 :PYTHON_DOES_NOT_EXIST
 @	echo [91mPython non e' installato nel tuo sistema!
-@	echo Installero' per te python 3.8.0...[0m
+@	echo Installero' per te l'ultima versione compatibile di python...[0m
 @   set dir=%~dp0
 @   set ps1="%TMP%\%~n0-%RANDOM%-%RANDOM%-%RANDOM%-%RANDOM%.ps1"
 @   copy /b /y "%~f0" %ps1% >nul
@@ -37,11 +37,14 @@ python -V | find "Python"    >NUL 2>NUL && (goto :PYTHON_DOES_EXIST)
 # In this example, all arguments are echoed.
 $Args | % { 'arg #{0}: [{1}]' -f ++$i, $_ }
 
+# Last version stable 2021/01/25
+$version = "3.8.7"
+
 $OSVersion = [Environment]::Is64BitOperatingSystem
 if($OSVersion){
-	$pythonUrl = "https://www.python.org/ftp/python/3.8.0/python-3.8.0-amd64.exe"
+	$pythonUrl = "https://www.python.org/ftp/python/" + $version + "/" + "python-" + $version + "-amd64.exe"
 }else{
-	$pythonUrl = "https://www.python.org/ftp/python/3.8.0/python-3.8.0.exe"
+	$pythonUrl = "https://www.python.org/ftp/python/" + $version + "/" + "python-" + $version + ".exe"
 }
 
 
@@ -50,10 +53,10 @@ $tempDirectory = "C:\temp_provision\"
 
 # Installation Directory
 # Some packages look for Python here
-$targetDir = "C:\Python38"
+$targetDir = "C:\Python387"
 
 # create the download directory and get the exe file
-$pythonNameLoc = $tempDirectory + "python38.exe"
+$pythonNameLoc = $tempDirectory + "python387.exe"
 New-Item -ItemType directory -Path $tempDirectory -Force | Out-Null
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 (New-Object System.Net.WebClient).DownloadFile($pythonUrl, $pythonNameLoc)
@@ -182,4 +185,4 @@ Param (
 
 Add-EnvExtension '.PY'
 Add-EnvExtension '.PYW'
-Add-EnvPath 'C:\Python38\'
+Add-EnvPath 'C:\Python387\'
